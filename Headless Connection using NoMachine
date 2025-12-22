@@ -1,0 +1,42 @@
+## **Install NoMachine on NVIDIA Jetson (ARM64)**
+This guide shows how to download and install NoMachine on an NVIDIA Jetson device and configure a dummy display so NoMachine works without a physical monitor.
+Prerequisites
+NVIDIA Jetson device (ARM64)
+Ubuntu-based Jetpack
+Internet connection
+
+
+# Download the ARM64 .deb package
+wget https://download.nomachine.com/download/9.3/Arm/nomachine_9.3.7_1_arm64.deb
+
+Install the Package
+
+sudo dpkg -i nomachine_9.3.7_1_arm64.deb
+
+Install Dummy Display
+
+Create a tsxt file name sudo nano /etc/X11/xorg.conf and save
+Section "Device"
+    Identifier "Configured Video Device"
+    Driver "dummy"
+EndSection
+
+Section "Monitor"
+    Identifier "Configured Monitor"
+    HorizSync 31.5-48.5
+    VertRefresh 50-70
+EndSection
+
+Section "Screen"
+    Identifier "Default Screen"
+    Monitor "Configured Monitor"
+    Device "Configured Video Device"
+    DefaultDepth 24
+    SubSection "Display"
+        Depth 24
+        Modes "1280x720"
+    EndSubSection
+EndSection
+
+then Reboot
+sudo reboot

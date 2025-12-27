@@ -33,5 +33,5 @@ v4l2-ctl --list-devices
 ```
 - If a previous camera attempt crashed, the argus daemon might be "holding" the camera resource, preventing a new "FrameConsumer" from being created. Reset the daemon:
 ```
-sudo systemctl restart argus-daemon
+sudo systemctl restart nvargus-daemon
 ```
